@@ -4,9 +4,6 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{data.name}}</ion-title>
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -20,14 +17,26 @@
     <img src="{{data.imgs[3]}}" class="img" />
   </div>
   <div style="padding: 10px;">
-    {{data.title}}
-    <span style="color:blue;" (click)="readmore()">(อ่านเพิ่มเติม)</span>
+    <u>ข้อมูล</u>
+    <div style="text-indent: 20px;">{{data.title}}</div>
+    <span style="color:#ffce00;" (click)="readmore()">(อ่านเพิ่มเติม)</span>
   </div>
   <div>
 
   </div>
-  <div style="padding:0 10px">
-    <ion-button expand="full" (click)="goTodirection()">ขอการเดินทางสาธารณะ</ion-button>
+  <div style="padding:10px 20px;background-color: #ffce0012;">
+    <div style="padding: 10px;">
+      <u>วันเวลาที่ให้บริการ</u>
+      <div style="padding: 10px;">
+        <div>สำหรับค่าเข้าชม: {{data.content.price_view}}</div>
+        <div *ngFor="let open of data.content.open">
+          {{open}}
+        </div>
+      </div>
+
+    </div>
+    <ion-button expand="full" (click)="goTodirection()" style="color: #000;" color="light">ขอการเดินทางสาธารณะ
+    </ion-button>
   </div>
 
 </ion-content>

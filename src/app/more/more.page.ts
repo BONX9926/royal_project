@@ -13,8 +13,6 @@ export class MorePage implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data = this.router.getCurrentNavigation().extras.state.detail;
-        console.log(this.data);
-
       }
     });
   }

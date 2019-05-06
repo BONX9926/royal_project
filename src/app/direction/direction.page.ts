@@ -25,7 +25,6 @@ export class DirectionPage implements OnInit, AfterContentInit {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data = this.router.getCurrentNavigation().extras.state.detail;
-        console.log("data", this.data);
 
       }
     });

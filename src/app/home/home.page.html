@@ -3,22 +3,12 @@
     <ion-title>
       แนะนำพระราชวังในกรุงเทพมหานคร
     </ion-title>
-    
-    <ion-buttons slot="end">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-  <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide *ngFor="let wang of wangs" (click)="detail(wang)">
-      <img src="{{wang.imgs[0]}}" style="height: 200px;width: 100%;"/>
-    </ion-slide>
-  </ion-slides>
-  <div align="center" style="font-size: 20px">
-    <h1><b>ตำแหน่งของคุณ</b></h1>
-  </div>
-  <div #map id="map"></div>
+  <ion-card *ngFor="let wang of wangs" (click)="detail(wang)">
+    <img src="{{wang.imgs[0]}}" />
+    <div class="card-title"><div class="bg-title">{{wang.name}}</div></div>
+  </ion-card>
 </ion-content>
