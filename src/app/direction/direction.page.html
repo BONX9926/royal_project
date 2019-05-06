@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-title>
+      เส้นทางการเดินทาง
+    </ion-title>
+    <ion-buttons slot="start" (click)="backhome()">
+      <ion-icon name="home" style="width: 30px;height: 30px;padding-left: 10px;"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div id="floating-panel">
+      <div style="display: flex;margin-top: 10px;">
+        <div style="flex:1" align="center">
+          <ion-icon name="locate" style="width: 30px;height: 30px;color: #ffce006b;"></ion-icon>
+        </div>
+        <div style="flex:4">
+          <input type="text" style="width:80%" value="ตำแหน่งของคุณ" readonly />
+        </div>
+      </div>
+      <div style="display: flex;margin-top: 5px;margin-bottom: 5px;">
+        <div style="flex:1" align="center">
+          <ion-icon name="pin" style="width: 30px;height: 30px;color: #ffce006b;"></ion-icon>
+        </div>
+        <div style="flex:4">
+          <input type="text" style="width:80%" value={{data.name}} readonly />
+        </div>
+      </div>
+    </div>
+    <div #mapElement id="map"></div>
+    <div style="padding:0 10px"><br />
+      <div align="center" style="font-size: 20px;">{{duration}} ({{distance}})</div>
+      <br />
+      <ion-button expand="full" (click)="goTodirectionApp()" color="warning">
+        <ion-icon name="navigate"></ion-icon>นำทาง
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
