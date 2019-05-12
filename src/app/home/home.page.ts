@@ -12,6 +12,7 @@ import { Router, NavigationExtras } from '@angular/router';
 
 export class HomePage implements OnInit, AfterContentInit {
   wangs: Array<any>;
+  loadding = true;
   constructor(private geolocation: Geolocation, private router: Router) {
 
   }
@@ -19,8 +20,7 @@ export class HomePage implements OnInit, AfterContentInit {
     var Ref = firebase.database().ref("locations")
     Ref.once("value").then((snapshot) => {
       this.wangs = this.snapshotToArray(snapshot.val())
-      console.log(this.wangs);
-      
+      this.loadding = false;
     }).catch()
   }
 

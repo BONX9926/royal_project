@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { environment } from 'src/environments/environment';
 import { LaunchNavigator } from '@ionic-native/launch-navigator/ngx';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import * as firebase from 'firebase';
 firebase.initializeApp(environment.firebase);
 @NgModule({
@@ -23,6 +24,7 @@ firebase.initializeApp(environment.firebase);
     AppRoutingModule
   ],
   providers: [
+    PhotoViewer,
     LaunchNavigator,
     Geolocation,
     StatusBar,

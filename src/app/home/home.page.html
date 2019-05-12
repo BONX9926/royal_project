@@ -7,8 +7,11 @@
 </ion-header>
 
 <ion-content>
+  <div align="center">
+    <ion-spinner *ngIf="loadding" name="bubbles" class="spinner-energized"></ion-spinner>
+  </div>
   <ion-card *ngFor="let wang of wangs" (click)="detail(wang)">
-    <img src="{{wang.imgs[0]}}" />
+    <img onerror="this.src='assets/imges/img-not-found.png'" src="{{wang.imgs[0]}}" />
     <div class="card-title"><div class="bg-title">{{wang.name}}</div></div>
   </ion-card>
 </ion-content>

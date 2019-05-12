@@ -9,12 +9,12 @@
 
 <ion-content>
   <div>
-    <img src="{{data.imgs[0]}}" style="height:200px;width:100%;" />
+    <img onerror="this.src='assets/imges/img-not-found.png'" src="{{data.imgs[0]}}" style="height:200px;width:100%;" (click)="showImg(data.imgs[0])" />
   </div>
   <div style="display: flex;padding:0 5px">
-    <img src="{{data.imgs[1]}}" class="img" />
-    <img src="{{data.imgs[2]}}" class="img" />
-    <img src="{{data.imgs[3]}}" class="img" />
+    <img onerror="this.src='assets/imges/img-not-found.png'" src="{{data.imgs[1]}}" class="img" (click)="showImg(data.imgs[1])"/>
+    <img onerror="this.src='assets/imges/img-not-found.png'" src="{{data.imgs[2]}}" class="img" (click)="showImg(data.imgs[2])"/>
+    <img onerror="this.src='assets/imges/img-not-found.png'" src="{{data.imgs[3]}}" class="img" (click)="showImg(data.imgs[3])"/>
   </div>
   <div style="padding: 10px;">
     <u>ข้อมูล</u>

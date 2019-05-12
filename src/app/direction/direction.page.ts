@@ -5,6 +5,7 @@ import { AlertController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator/ngx';
+
 declare var google;
 @Component({
   selector: 'app-direction',
@@ -34,8 +35,7 @@ export class DirectionPage implements OnInit, AfterContentInit {
   mode = 'DRIVING';
   loading;
   wangs;
-  distance;
-  duration;
+  path = "กำลังโหลด..."
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
 
@@ -46,10 +46,10 @@ export class DirectionPage implements OnInit, AfterContentInit {
     
   }
 
-  async ngOnInit(): Promise<void> {
+  async ngOnInit() {
     this.loading = await this.loadingController.create({
       spinner: null,
-      message: 'Please wait...',
+      message: 'กรุณารอสักครู่...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
@@ -84,19 +84,28 @@ export class DirectionPage implements OnInit, AfterContentInit {
   }
 
   ionViewWillEnter() {
-    this.loading.present();
-    this.geolocation.getCurrentPosition().then((resp) => {
-      this.loadingController.dismiss().then(() => {
+    this.setLocation();
+  }
 
-        this.start = resp.coords.latitude+","+resp.coords.longitude
-        this.end = this.data.lat + ',' + this.data.lng
-        this.calculateAndDisplayRoute();
-      })
-    }).catch((error) => {
-      console.log('Error getting location', error);
-    });
+
+  setLocation() {
+    setTimeout(() => {
+      this.loading.present();
+      this.geolocation.getCurrentPosition().then((resp) => {
+        this.loadingController.dismiss().then(() => {
+  
+          this.start = resp.coords.latitude+","+resp.coords.longitude
+          this.end = this.data.lat + ',' + this.data.lng
+          this.calculateAndDisplayRoute();
+        })
+      }).catch((error) => {
+        console.log('Error getting location', error);
+      });      
+    }, 1000);
+
 
   }
+
 
   calculateAndDisplayRoute() {
 
@@ -106,9 +115,7 @@ export class DirectionPage implements OnInit, AfterContentInit {
       travelMode: this.mode
     }, (response, status) => {
       if (status === 'OK') {
-
-        this.distance = response.routes[0].legs[0].distance.text
-        this.duration = response.routes[0].legs[0].duration.text
+        this.path =response.routes[0].legs[0].duration.text+" ("+response.routes[0].legs[0].distance.text+")"
         this.directionsDisplay.setDirections(response);
       } else {
         // this.presentAlert()

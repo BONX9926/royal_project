@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
 import { NavigationExtras } from '@angular/router';
 @Component({
   selector: 'app-detail',
@@ -10,7 +10,7 @@ import { NavigationExtras } from '@angular/router';
 })
 export class DetailPage implements OnInit {
   data;
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router,private photoViewer: PhotoViewer) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.data = this.router.getCurrentNavigation().extras.state.detail;
@@ -28,6 +28,10 @@ export class DetailPage implements OnInit {
       }
     };
     this.router.navigate(['direction'], navigationExtras);
+  }
+
+  showImg(img) {
+    this.photoViewer.show(img)
   }
 
   readmore() {
